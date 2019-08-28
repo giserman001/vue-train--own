@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Cascader :options="options" v-model="value" @input="input"></Cascader>
+    <Cascader :options.sync="options" v-model="value" :lazyLoad="lazyLoad"></Cascader>
   </div>
 </template>
 
@@ -23,11 +23,16 @@ export default {
     this.options = await fetchData(0);
   },
   methods: {
-    // 难道让用户这么去写？？？？？需要組件内部處理
-    async input(value) {
-      let currentItem = value[value.length - 1]
-      let children = await fetchData(currentItem.id)
-      this.$set(currentItem, 'children', children)
+    // 难道让用户这么去写？？？？？这里需要組件内部處理
+    // async input(value) {
+    //   let currentItem = value[value.length - 1] // 引用地址
+    //   let children = await fetchData(currentItem.id)
+    //   // 这里不需要更新数据源（为啥？）
+    //   this.$set(currentItem, 'children', children)
+    // },
+    async lazyLoad(id, callback) {
+      let children = await fetchData(id)
+      callback(children)
     }
   },
   data() {

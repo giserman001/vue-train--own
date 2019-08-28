@@ -1,12 +1,15 @@
 {
-  "name": "vue-cascader",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-cascader-sy",
+  "version": "1.0.1",
+  "author": "giserman001",
+  "private": false,
+  "main": "./dist/Cascader.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "dist": "vue-cli-service build --target lib --name Cascader  ./src/components/Cascader.vue"
   },
   "dependencies": {
     "core-js": "^2.6.5",

@@ -12,6 +12,7 @@
 <script>
 import util from '../directives/clickOutside'
 import CascaderItem from './CascaderItem'
+import cloneDeep from 'lodash/cloneDeep';
 // 全局挂载事件 当点击时候校验一下点击的是否是cascader中内容
 // 判断当前点击是否在某个元素上
 // 如果你希望对某个元素有一些列的操作，你可以封装一个指令 （自定义指令）
@@ -20,14 +21,17 @@ export default {
         CascaderItem
     },
     props: {
-        value: {
-            type: Array,
-            default: () => []
-        },
-        options: {
-            type: Array,
-            default: () => []
-        }
+      lazyLoad: {
+        type: Function
+      },
+      value: {
+          type: Array,
+          default: () => []
+      },
+      options: {
+          type: Array,
+          default: () => []
+      }
     },
     computed: {
         result() {
@@ -43,8 +47,38 @@ export default {
         }
     },
     methods: {
+        handle(id, chilren) {
+          let cloneOptions = cloneDeep(this.options)
+          // 去树中如何找到指定id的节点   这里有三种办法
+          // 1.递归(但是递归效率不好，不能建议使用)
+          // 2.采用深度
+          // 3.采用广度
+          let stack = [...cloneOptions] // 栈
+          let index = 0
+          let current // 当前对象
+          while (current = stack[index++]) { // 广度遍历
+            if(current.id != id) {
+              if(current.children) {
+                stack = stack.concat(current.children)
+              }
+            } else {
+              break
+            }
+          }
+          if(current) {
+            current.children = chilren // 动态添加儿子节点
+            // 动态数据添加好后，传递给父亲
+            this.$emit('update:options', cloneOptions)
+          }
+        },
         change(value) {
-            this.$emit('input', value)
+          let lastItem = value[value.length - 1]
+          let id = lastItem.id
+          // 用法很巧妙
+          if(this.lazyLoad) {
+            this.lazyLoad(id, (chilren) => this.handle(id, chilren))
+          }
+          this.$emit('input', value)
         },
         close() {
             this.isVisible = false

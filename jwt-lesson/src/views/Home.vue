@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     首页
-    <vue-cascader-sy :options.sync="options" v-model="value" :lazyLoad="lazyLoad"></vue-cascader-sy>
+    <!-- <vue-cascader-sy :options.sync="options" v-model="value" :lazyLoad="lazyLoad"></vue-cascader-sy> -->
+    <vue-cascader-sy :options="options" v-model="value"></vue-cascader-sy>
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export default {
     vueCascaderSy
   },
   async created() {
-    this.options = await fetchData(0);
+    // this.options = await fetchData(0);
   },
   methods: {
     async lazyLoad(id, callback) {
@@ -32,7 +33,62 @@ export default {
   data() {
     return{
       value: [],
-      options: []
+      options: [
+        {
+          label: "肉类",
+          children: [
+            {
+              label: "猪肉",
+              children: [
+                {
+                  label: "五花肉"
+                },
+                {
+                  label: "里脊肉"
+                }
+              ]
+            },
+            {
+              label: "鸡肉",
+              children: [
+                {
+                  label: "鸡腿"
+                },
+                {
+                  label: "鸡翅"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "蔬菜",
+          children: [
+            {
+              label: "叶菜类",
+              children: [
+                {
+                  label: "大白菜"
+                },
+                {
+                  label: "小白菜"
+                }
+              ]
+            },
+            {
+              label: "根茎类",
+              children: [
+                {
+                  label: "萝卜"
+                },
+                {
+                  label: "土豆"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   }
 }

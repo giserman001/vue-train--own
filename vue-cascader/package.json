@@ -1,6 +1,6 @@
 {
   "name": "vue-cascader-sy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "giserman001",
   "private": false,
   "main": "./dist/Cascader.umd.min.js",

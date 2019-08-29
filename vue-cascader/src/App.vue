@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Cascader :options.sync="options" v-model="value" :lazyLoad="lazyLoad"></Cascader>
+    <Cascader :options="options" v-model="value"></Cascader>
+    <!-- <Cascader :options.sync="options" v-model="value" :lazyLoad="lazyLoad"></Cascader> -->
   </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
   },
   name: "app",
   async created() {
-    this.options = await fetchData(0);
+    // this.options = await fetchData(0);
   },
   methods: {
     // 难道让用户这么去写？？？？？这里需要組件内部處理
@@ -39,60 +40,60 @@ export default {
     return {
       value: [],
       options: [
-        // {
-        //   label: "肉类",
-        //   children: [
-        //     {
-        //       label: "猪肉",
-        //       children: [
-        //         {
-        //           label: "五花肉"
-        //         },
-        //         {
-        //           label: "里脊肉"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       label: "鸡肉",
-        //       children: [
-        //         {
-        //           label: "鸡腿"
-        //         },
-        //         {
-        //           label: "鸡翅"
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // },
-        // {
-        //   label: "蔬菜",
-        //   children: [
-        //     {
-        //       label: "叶菜类",
-        //       children: [
-        //         {
-        //           label: "大白菜"
-        //         },
-        //         {
-        //           label: "小白菜"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       label: "根茎类",
-        //       children: [
-        //         {
-        //           label: "萝卜"
-        //         },
-        //         {
-        //           label: "土豆"
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
+        {
+          label: "肉类",
+          children: [
+            {
+              label: "猪肉",
+              children: [
+                {
+                  label: "五花肉"
+                },
+                {
+                  label: "里脊肉"
+                }
+              ]
+            },
+            {
+              label: "鸡肉",
+              children: [
+                {
+                  label: "鸡腿"
+                },
+                {
+                  label: "鸡翅"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "蔬菜",
+          children: [
+            {
+              label: "叶菜类",
+              children: [
+                {
+                  label: "大白菜"
+                },
+                {
+                  label: "小白菜"
+                }
+              ]
+            },
+            {
+              label: "根茎类",
+              children: [
+                {
+                  label: "萝卜"
+                },
+                {
+                  label: "土豆"
+                }
+              ]
+            }
+          ]
+        }
       ]
     };
   }

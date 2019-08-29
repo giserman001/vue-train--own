@@ -16,7 +16,6 @@ export default {
   name: 'CascaderItem', // 注意：递归组件必须给自己起个名字
   data() {
     return {
-      currentSelect: null // 当前点击的对象
     };
   },
   computed: {
@@ -25,11 +24,13 @@ export default {
       // 点击左边算出右边list
       // 注意：这里如果options变化，没有更新视图，因为没有依赖options
       // 去自己那一层找自己的儿子
+      // 这里判断是：1.异步获取 2.同步获取
       if(this.value[this.level] && this.value[this.level].id) {
         let o = this.options.find(item => item.id === this.value[this.level].id)
         return o.children
+      } else {
+        return this.value[this.level] && this.value[this.level].children;
       }
-      // return this.value[this.level] && this.value[this.level].children;
     }
   },
   methods: {
@@ -43,7 +44,6 @@ export default {
       cloneValue[this.level] = item; // 引用地址
       cloneValue.splice(this.level + 1); // 当前点击某一项，就将自己后面 + 1所有删除
       this.$emit("change", cloneValue);
-      this.currentSelect = item;
     }
   },
   props: {

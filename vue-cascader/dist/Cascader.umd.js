@@ -5820,12 +5820,12 @@ function _toConsumableArray(arr) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4007fd25-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CascaderItem.vue?vue&type=template&id=762eb442&
-var CascaderItemvue_type_template_id_762eb442_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('div',{staticClass:"content-left"},_vm._l((_vm.options),function(item,index){return _c('div',{key:index},[_c('div',{staticClass:"label",on:{"click":function($event){return _vm.select(item)}}},[_vm._v(_vm._s(item.label))])])}),0),(_vm.lists && _vm.lists.length)?_c('div',{staticClass:"content-right"},[_c('CascaderItem',{attrs:{"options":_vm.lists,"level":_vm.level+1,"value":_vm.value},on:{"change":_vm.change}})],1):_vm._e()])}
-var CascaderItemvue_type_template_id_762eb442_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4007fd25-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CascaderItem.vue?vue&type=template&id=2d804b90&
+var CascaderItemvue_type_template_id_2d804b90_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('div',{staticClass:"content-left"},_vm._l((_vm.options),function(item,index){return _c('div',{key:index},[_c('div',{staticClass:"label",on:{"click":function($event){return _vm.select(item)}}},[_vm._v(_vm._s(item.label))])])}),0),(_vm.lists && _vm.lists.length)?_c('div',{staticClass:"content-right"},[_c('CascaderItem',{attrs:{"options":_vm.lists,"level":_vm.level+1,"value":_vm.value},on:{"change":_vm.change}})],1):_vm._e()])}
+var CascaderItemvue_type_template_id_2d804b90_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CascaderItem.vue?vue&type=template&id=762eb442&
+// CONCATENATED MODULE: ./src/components/CascaderItem.vue?vue&type=template&id=2d804b90&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -5857,10 +5857,7 @@ var cloneDeep_default = /*#__PURE__*/__webpack_require__.n(cloneDeep);
   name: 'CascaderItem',
   // 注意：递归组件必须给自己起个名字
   data: function data() {
-    return {
-      currentSelect: null // 当前点击的对象
-
-    };
+    return {};
   },
   computed: {
     // computed缓存
@@ -5870,13 +5867,15 @@ var cloneDeep_default = /*#__PURE__*/__webpack_require__.n(cloneDeep);
       // 点击左边算出右边list
       // 注意：这里如果options变化，没有更新视图，因为没有依赖options
       // 去自己那一层找自己的儿子
+      // 这里判断是：1.异步获取 2.同步获取
       if (this.value[this.level] && this.value[this.level].id) {
         var o = this.options.find(function (item) {
           return item.id === _this.value[_this.level].id;
         });
         return o.children;
-      } // return this.value[this.level] && this.value[this.level].children;
-
+      } else {
+        return this.value[this.level] && this.value[this.level].children;
+      }
     }
   },
   methods: {
@@ -5892,7 +5891,6 @@ var cloneDeep_default = /*#__PURE__*/__webpack_require__.n(cloneDeep);
       cloneValue.splice(this.level + 1); // 当前点击某一项，就将自己后面 + 1所有删除
 
       this.$emit("change", cloneValue);
-      this.currentSelect = item;
     }
   },
   props: {
@@ -6025,8 +6023,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_CascaderItemvue_type_script_lang_js_,
-  CascaderItemvue_type_template_id_762eb442_render,
-  CascaderItemvue_type_template_id_762eb442_staticRenderFns,
+  CascaderItemvue_type_template_id_2d804b90_render,
+  CascaderItemvue_type_template_id_2d804b90_staticRenderFns,
   false,
   null,
   null,

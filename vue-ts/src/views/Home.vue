@@ -15,6 +15,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import TodoItem from '../components/TodoItem';
 import {ITodo} from '../types/todo';
 import {State, Mutation, Action} from 'vuex-class';
+import { getTest } from '../service/index'
 @Component({
   name: 'home',
   components: {
@@ -38,6 +39,9 @@ export default class Home extends Vue {
   public mounted() {
     // console.log(this.lists);
     this.hello()
+    getTest().then((res: any) => {
+      console.log(res, '有数据吗')
+    })
   }
   // 计算属性 （computed）
   get count() {

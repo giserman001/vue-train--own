@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import TodoItem from '../components/TodoItem'
-import {ITodo} from '../types/todo'
+import TodoItem from '../components/TodoItem';
+import {ITodo} from '../types/todo';
 import {State, Mutation, Action} from 'vuex-class';
 @Component({
   name: 'home',
@@ -24,13 +24,13 @@ import {State, Mutation, Action} from 'vuex-class';
 export default class Home extends Vue {
   @Action('test')
   public fn() {
-
+    console.log('hahah')
   }
   @Mutation('hello')
   public hello() {
-
+    console.log('hahah')
   }
-  @State('lists') public lists!: Array<ITodo>
+  @State('lists') public lists!: ITodo[]
   @State('index') public index!: number
   // ts中类需要有修饰符  public private protected
   // data上数据
@@ -41,10 +41,10 @@ export default class Home extends Vue {
   }
   // 计算属性 （computed）
   get count() {
-    return this.lists.length;
+    return this.lists.length
   }
-  say(msg:string):void {
-    console.log('say:' + msg);
+  public say(msg: string): void {
+    console.log('say:' + msg)
   }
 }
 </script>

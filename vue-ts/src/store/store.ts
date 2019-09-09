@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {ITodo} from './types/todo';
+import {ITodo} from '../types/todo';
 Vue.use(Vuex);
 
 interface Ilist {

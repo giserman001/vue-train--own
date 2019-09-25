@@ -3,5 +3,4 @@ const testConfig = {
   QiNiuUrl: 'https://upload.qiniup.com',
   tokenKeyName: 'token',
 }
-
 export default testConfig

@@ -36,13 +36,13 @@ export default class Home extends Vue {
   // ts中类需要有修饰符  public private protected
   // data上数据
   // 在这里有两种写法  1. lists:ITodo[]  2. llists:Array<ITodo>
-  public mounted() {
-    // console.log(this.lists);
-    this.hello()
-    getTest().then((res: any) => {
-      console.log(res, '有数据吗')
-    })
-  }
+  // public mounted() {
+  //   // console.log(this.lists);
+  //   this.hello()
+  //   getTest().then((res: any) => {
+  //     console.log(res, '有数据吗')
+  //   })
+  // }
   // 计算属性 （computed）
   get count() {
     return this.lists.length

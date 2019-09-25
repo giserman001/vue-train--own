@@ -12,6 +12,9 @@ export default class TodoItem extends Vue {
     // 传递参数
     return 'aaaa';
   }
+  public mounted() {
+    console.log('111111111111111');
+  }
   // watch监听数据变化
   @Watch('num')
   public watchNum() {

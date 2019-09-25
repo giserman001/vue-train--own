@@ -3,29 +3,25 @@ import router from '../router/router'
 import { Loading, Message } from 'element-ui'
 import storage from '@/lib/storage'
 import qs from 'qs'
-import envConfig from '../config'
-console.log(envConfig)
+import mergeConfig from '../config'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
 
 // 每个请求的拦截器方法可能不一样
 class AjaxRequest {
   public baseURL: string
   public timeout: number
-  public headers: any
   public loadingInstance: any
   constructor() {
-    this.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '/'
+    this.baseURL = (mergeConfig as any).baseURL
     this.timeout = 2000
-    this.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
   }
-  public request(config: any) { // 用户请求设置的方法
+  public request(conf: any) { // 用户请求设置的方法
     const instance = axios.create({
       baseURL: this.baseURL,
       timeout: this.timeout
     });
     // 设置拦截器
-    // tslint:disable-next-line: no-shadowed-variable
-    instance.interceptors.request.use((config) => {
-      console.log(config)
+    instance.interceptors.request.use((config: any) => {
       if (config.method === 'post'
         && config.headers.post['Content-Type'].indexOf('application/x-www-form-urlencoded') !== -1) {
         config.data = qs.stringify(config.data, {
@@ -49,6 +45,7 @@ class AjaxRequest {
       if (this.loadingInstance) {
         this.loadingInstance.close()
       }
+      // 失效code
       if (!res.data.status && res.data.code === '20006') {
         router.push({
           path: '/login'
@@ -75,7 +72,7 @@ class AjaxRequest {
     }, (err) => {
       return Promise.reject(err)
     })
-    return instance(config)
+    return instance(conf)
   }
 }
 export default new AjaxRequest()

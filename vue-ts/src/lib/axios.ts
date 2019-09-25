@@ -5,12 +5,17 @@ import storage from '@/lib/storage'
 import qs from 'qs'
 import mergeConfig from '../config'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
+interface Iaxios {
+  baseURL: string
+  timeout: number
+  loadingInstance: any
+}
 
 // 每个请求的拦截器方法可能不一样
-class AjaxRequest {
-  public baseURL: string
-  public timeout: number
-  public loadingInstance: any
+class AjaxRequest implements Iaxios {
+  public baseURL = ''
+  public timeout = 0
+  public loadingInstance = null
   constructor() {
     this.baseURL = (mergeConfig as any).baseURL
     this.timeout = 2000

@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {ITodo} from '../types/todo';
+import User from './module/user';
+import Home from './module/home';
 Vue.use(Vuex);
 
 interface Ilist {
   lists: ITodo[];
   index: number;
 }
-
 export default new Vuex.Store<Ilist>({
   state: {
     lists: [{
@@ -26,9 +27,14 @@ export default new Vuex.Store<Ilist>({
   },
   actions: {
     test({commit}, data) {
+      console.log(data)
       setTimeout(() => {
         commit('hello');
       }, 2000);
     },
   },
+  modules: {
+    User,
+    Home
+  }
 });

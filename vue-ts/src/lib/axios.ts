@@ -15,7 +15,7 @@ interface Iaxios {
 class AjaxRequest implements Iaxios {
   public baseURL = ''
   public timeout = 0
-  public loadingInstance = null
+  public loadingInstance = {}
   constructor() {
     this.baseURL = (mergeConfig as any).baseURL
     this.timeout = 2000
@@ -48,7 +48,7 @@ class AjaxRequest implements Iaxios {
     // 设置响应拦截器
     instance.interceptors.response.use((res: any) => {
       if (this.loadingInstance) {
-        this.loadingInstance.close()
+        (this.loadingInstance as any).close()
       }
       // 失效code
       if (!res.data.status && res.data.code === '20006') {

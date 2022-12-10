@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "core-js": "^2.6.5",
     "element-ui": "^2.11.1",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "vue": "^2.6.10",
     "vue-cascader-sy": "^1.0.1",
